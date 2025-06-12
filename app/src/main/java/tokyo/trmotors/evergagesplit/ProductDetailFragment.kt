@@ -16,6 +16,7 @@ import tokyo.trmotors.evergagesplit.databinding.ProductDetailLayoutBinding
 //     import com.evergage.android.promote.LineItem
 import com.evergage.android.promote.Product
 import com.evergage.android.promote.LineItem
+import com.evergage.android.promote.Order
 
 
 /**
@@ -99,6 +100,38 @@ class ProductDetailFragment : Fragment() {
             if (quantity > 1) {
                 quantity--
                 binding.quantityText.text = quantity.toString()
+            }
+        }
+
+        // =======================================================
+        // ★★★ ここに「購入する」ボタンの処理を追加しました ★★★
+        // =======================================================
+        binding.purchaseButton.setOnClickListener {
+            product?.let { currentProduct ->
+                // 1. 購入する商品(LineItem)リストを作成します
+                val productItem = Product(currentProduct.id)
+                productItem.price = currentProduct.price.toDoubleOrNull()
+                val lineItem = LineItem(productItem, quantity)
+                val lineItems = listOf(lineItem) // Orderで渡すためにリスト化
+
+                // 2. ユニークなオーダーIDを生成します (例: 現在時刻を利用)
+                val newOrderId = "ORD-${System.currentTimeMillis()}"
+
+                // 3. Orderオブジェクトを生成します
+                // コンストラクタ: Order(orderId, lineItems, totalValue)
+                // totalValueをnullにすると、SDKがlineItemsから合計金額を自動計算します。
+                val order = Order(newOrderId, lineItems, null)
+
+                // 4. 通貨を日本円(JPY)に設定します
+                order.totalValueCurrency = "JPY"
+
+                // 5. purchaseイベントを送信します
+                val screen = Evergage.getInstance().getScreenForActivity(requireActivity())
+                screen!!.purchase(order)
+
+                // 処理の完了をログとToastで通知します
+                Log.d("ProductDetailDebug", "purchaseイベントを送信しました: orderId=${order.orderId}")
+                Toast.makeText(context, "購入が完了しました", Toast.LENGTH_SHORT).show()
             }
         }
     }

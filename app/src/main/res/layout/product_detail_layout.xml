@@ -87,7 +87,6 @@
             app:layout_constraintTop_toBottomOf="@id/product_description_detail"
             app:layout_constraintBottom_toTopOf="@id/add_to_cart_button" />
 
-        <!-- 数量セレクターの修正 -->
         <LinearLayout
             android:id="@+id/quantity_selector"
             android:layout_width="wrap_content"
@@ -98,7 +97,6 @@
             app:layout_constraintTop_toTopOf="@id/quantity_label"
             app:layout_constraintBottom_toBottomOf="@id/quantity_label">
 
-            <!-- ボタンのスタイルを修正 -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/quantity_remove_button"
                 style="?attr/materialButtonOutlinedStyle"
@@ -121,7 +119,6 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <!-- ボタンのスタイルを修正 -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/quantity_add_button"
                 style="?attr/materialButtonOutlinedStyle"
@@ -147,6 +144,19 @@
             app:layout_constraintTop_toBottomOf="@id/quantity_label"
             app:layout_constraintStart_toStartOf="@+id/product_description_detail"
             app:layout_constraintEnd_toEndOf="@+id/product_description_detail"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/purchase_button"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            android:text="購入する"
+            android:textSize="20sp"
+            app:cornerRadius="32dp"
+            app:layout_constraintEnd_toEndOf="@+id/add_to_cart_button"
+            app:layout_constraintStart_toStartOf="@+id/add_to_cart_button"
+            app:layout_constraintTop_toBottomOf="@+id/add_to_cart_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
