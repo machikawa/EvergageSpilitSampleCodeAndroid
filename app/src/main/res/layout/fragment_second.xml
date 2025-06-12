@@ -4,33 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    tools:context=".ProductListFragment">
+    android:background="#F5F5F5"
+    tools:context=".SecondFragment">
 
     <TextView
         android:id="@+id/title_products"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="おすすめ商品"
+        android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!--
-      本来はRecyclerViewを使用しますが、ここではレイアウト確認のため
-      LinearLayoutで2つの商品を直接配置します。
-    -->
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/title_products"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/title_products">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,9 +40,9 @@
                 android:id="@+id/product_item_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="4dp"
-                android:layout_margin="8dp">
+                app:cardElevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -54,32 +51,35 @@
                     android:padding="16dp">
 
                     <ImageView
+                        android:id="@+id/product_image_1"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@android:drawable/ic_menu_gallery"
                         android:scaleType="centerCrop"
-                        tools:ignore="ContentDescription" />
+                        tools:src="@tools:sample/avatars"
+                        android:contentDescription="商品画像1" />
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginStart="16dp">
+                        android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/product_name_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="高品質な商品A"
                             android:textSize="18sp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold"
+                            tools:text="高品質な商品A" />
 
                         <TextView
+                            android:id="@+id/product_price_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="￥1,980"
+                            android:layout_marginTop="8dp"
                             android:textSize="16sp"
-                            android:layout_marginTop="8dp"/>
+                            tools:text="￥1,980" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -89,9 +89,9 @@
                 android:id="@+id/product_item_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="4dp"
-                android:layout_margin="8dp">
+                app:cardElevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -100,32 +100,35 @@
                     android:padding="16dp">
 
                     <ImageView
+                        android:id="@+id/product_image_2"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@android:drawable/ic_menu_camera"
                         android:scaleType="centerCrop"
-                        tools:ignore="ContentDescription" />
+                        tools:src="@tools:sample/avatars"
+                        android:contentDescription="商品画像2" />
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginStart="16dp">
+                        android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/product_name_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="スタイリッシュな商品B"
                             android:textSize="18sp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold"
+                            tools:text="スタイリッシュな商品B" />
 
                         <TextView
+                            android:id="@+id/product_price_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="￥2,480"
+                            android:layout_marginTop="8dp"
                             android:textSize="16sp"
-                            android:layout_marginTop="8dp"/>
+                            tools:text="￥2,480" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

@@ -21,25 +21,12 @@ class SecondFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // ★修正点: 渡すIDを "mobile1" に変更
-        binding.productItem1.setOnClickListener {
-            val bundle = Bundle().apply {
-                putString("PRODUCT_ID", "mobile1")
-            }
-            findNavController().navigate(R.id.action_SecondFragment_to_ProductDetailFragment, bundle)
-        }
-
-        // ★修正点: 渡すIDを "mobile2" に変更
-        binding.productItem2.setOnClickListener {
-            val bundle = Bundle().apply {
-                putString("PRODUCT_ID", "mobile2")
-            }
-            findNavController().navigate(R.id.action_SecondFragment_to_ProductDetailFragment, bundle)
-        }
+        // ★★★ ここでUIとクリックリスナーを設定します ★★★
+        setupProductViews()
+        setupClickListeners()
     }
 
     override fun onResume() {
@@ -54,6 +41,48 @@ class SecondFragment : Fragment() {
         if (screen != null) {
             // この画面が「商品一覧」であることを示すイベントを送信します
             screen.trackAction("Product LIST Page")
+        }
+    }
+
+    private fun setupClickListeners() {
+        // 商品1のクリックリスナー
+        binding.productItem1.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("PRODUCT_ID", "mobile1")
+            }
+            findNavController().navigate(R.id.action_SecondFragment_to_ProductDetailFragment, bundle)
+        }
+
+        // 商品2のクリックリスナー
+        binding.productItem2.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("PRODUCT_ID", "mobile2")
+            }
+            findNavController().navigate(R.id.action_SecondFragment_to_ProductDetailFragment, bundle)
+        }
+    }
+
+    private fun setupProductViews() {
+        // 商品1の情報を取得してUIにセット
+        ProductRepository.findProductById("mobile1")?.let { product ->
+            binding.productName1.text = product.name
+            binding.productPrice1.text = "￥${product.price}"
+
+            val imageResId = resources.getIdentifier(product.imageName, "drawable", requireContext().packageName)
+            if (imageResId != 0) {
+                binding.productImage1.setImageResource(imageResId)
+            }
+        }
+
+        // 商品2の情報を取得してUIにセット
+        ProductRepository.findProductById("mobile2")?.let { product ->
+            binding.productName2.text = product.name
+            binding.productPrice2.text = "￥${product.price}"
+
+            val imageResId = resources.getIdentifier(product.imageName, "drawable", requireContext().packageName)
+            if (imageResId != 0) {
+                binding.productImage2.setImageResource(imageResId)
+            }
         }
     }
 

@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".FirstFragment">
 
-    <!-- 背景画像用のImageView -->
     <ImageView
         android:id="@+id/background_image"
         android:layout_width="0dp"
@@ -17,20 +16,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/backgrounds/scenic"
-        android:importantForAccessibility="no"
         android:src="@drawable/top"
-        />
-    <!--
-      注意: 上記の tools:src はAndroid Studioのプレビュー用です。
-      実際のアプリで表示するには、res/drawableフォルダに画像を追加し、
-      android:src="@drawable/your_image_name" のように設定してください。
-    -->
+        android:importantForAccessibility="no" />
 
     <TextView
         android:id="@+id/textview_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Shop Top"
+        android:gravity="center"
+        android:text="レインボーロード\nWebショップ"
         android:textColor="@android:color/white"
         android:textSize="48sp"
         android:textStyle="bold"
@@ -43,22 +37,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        app:layout_constraintVertical_bias="0.45"/>
+        app:layout_constraintVertical_bias="0.45" />
 
-    <!-- 美しくデザインされたボタン -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_first"
-        style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginTop="24dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="32dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:text="商品一覧を見る"
+        android:background="@drawable/button_background"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:cornerRadius="28dp"
+        android:textStyle="bold"
+        android:elevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
